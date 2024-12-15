@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.37.11/docxtemplater.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PizZip/3.0.6/pizzip.js"></script>
+
+<link rel="stylesheet" href="certificate-generator.css">
+    <title> NiftyBooks Internship Certificate </title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="name">Recipient Name</label>
+                <input type="text" id="name" value="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="team">Team Name</label>
+                <input type="text" id="team" value="development">
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" value="2024-01-01">
+            </div>
+
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" value="2024-03-31">
+            </div>
+
+            <div class="form-group">
+                <label for="skills">Skills Showcased</label>
+                <input type="text" id="skills" value="React development and UI/UX design">
+            </div>
+        </div>
+
+        <div class="signatures">
+            <div class="form-group">
+                <label for="ctoName">CTO Name</label>
+                <input type="text" id="ctoName" value="Alex Johnson">
+                <label for="ctoSignature">CTO Signature</label>
+                <input type="file" id="ctoSignature" accept="image/*">
+                <img id="ctoPreview" class="signature-preview">
+            </div>
+
+            <div class="form-group">
+                <label for="ceoName">CEO Name</label>
+                <input type="text" id="ceoName" value="Sarah Smith">
+                <label for="ceoSignature">CEO Signature</label>
+                <input type="file" id="ceoSignature" accept="image/*">
+                <img id="ceoPreview" class="signature-preview">
+            </div>
+        </div>
+
+        <div class="certificate">
+            <!-- <svg class="corner corner-tl" viewBox="0 0 100 100">
+                <path d="M2,2 Q2,50 50,50 Q98,50 98,98 M2,2 Q50,2 50,50 Q50,98 98,98" fill="none" stroke="currentColor" stroke-width="3"/>
+                <path d="M20,20 Q20,40 40,40 Q60,40 60,60" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="corner corner-tr" viewBox="0 0 100 100">
+                <path d="M2,2 Q2,50 50,50 Q98,50 98,98 M2,2 Q50,2 50,50 Q50,98 98,98" fill="none" stroke="currentColor" stroke-width="3"/>
+                <path d="M20,20 Q20,40 40,40 Q60,40 60,60" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="corner corner-bl" viewBox="0 0 100 100">
+                <path d="M2,2 Q2,50 50,50 Q98,50 98,98 M2,2 Q50,2 50,50 Q50,98 98,98" fill="none" stroke="currentColor" stroke-width="3"/>
+                <path d="M20,20 Q20,40 40,40 Q60,40 60,60" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="corner corner-br" viewBox="0 0 100 100">
+                <path d="M2,2 Q2,50 50,50 Q98,50 98,98 M2,2 Q50,2 50,50 Q50,98 98,98" fill="none" stroke="currentColor" stroke-width="3"/>
+                <path d="M20,20 Q20,40 40,40 Q60,40 60,60" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg> -->
+
+            <div class="certificate-content">
+                <img src="nifty logo.jpg" alt="Logo" class="logo">
+                <h1 class="certificate-title">Internship Completion Certificate</h1>
+                <p>Proudly presented to</p>
+                <h2 id="recipientName" class="recipient-name">John Doe</h2>
+                <p class="description">
+                    For successfully completing 3-month internship as a Front End Web Developer at NiftyBooks.
+                    During the internship, <span id="recipientNameSpan">John Doe</span> showcased <span id="skillsSpan">React development and UI/UX design</span> 
+                    that added value to the <span id="teamSpan">development</span> team.
+                </p>
+                <p class="dates">
+                    Internship Period: <span id="dateSpan">January 1, 2024 to March 31, 2024</span>
+                </p>
+                <div class="signature-row">
+                    <div class="signature-box">
+                        <img id="ctoSignatureImg" class="signature-img">
+                        <p id="ctoNameDisplay" class="signature-name">Alex Johnson</p>
+                        <p class="signature-title">Chief Technology Officer</p>
+                    </div>
+                    <div class="signature-box">
+                        <img id="ceoSignatureImg" class="signature-img">
+                        <p id="ceoNameDisplay" class="signature-name">Sarah Smith</p>
+                        <p class="signature-title">Chief Executive Officer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Download PDF
+            </button>
+            <!-- <button class="btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Download DOC
+            </button> -->
+        </div>
+    </div>
+
+
+    <script type="module" src="certificate-generator.js"> </script>
+
+</body>
+</html>
